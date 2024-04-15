@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Authors:</h2>
+    <ol>
+        <ui:repeat value="#{authors.allAuthors}" var="author">
+            <li><h:link value="#{author.name}" outcome="books?authorId=#{author.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{authors.authorToCreate.name}" required="true" />
+        <h:commandButton value="Add new author" actionListener="#{authors.createAuthor}" action="index?faces-redirect=true"/>
+    </h:form>
+</h:body>
+</html>
+
+<!--<!DOCTYPE html>-->
+
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:h="http://xmlns.jcp.org/jsf/html"-->
+<!--      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"-->
+<!--&gt;-->
+<!--<h:head/>-->
+<!--<h:body>-->
+<!--    <h2>Teams:</h2>-->
+<!--    <ol>-->
+<!--        <ui:repeat value="#{teams.allTeams}" var="team">-->
+<!--            <li><h:link value="#{team.name}" outcome="players?teamId=#{team.id}" /></li>-->
+<!--        </ui:repeat>-->
+<!--    </ol>-->
+<!--    <h:form>-->
+<!--        <h:inputText value="#{teams.teamToCreate.name}" required="true" />-->
+<!--        <h:commandButton value="Add new team" actionListener="#{teams.createTeam}" action="index?faces-redirect=true"/>-->
+<!--    </h:form>-->
+<!--    <h:link outcome="myBatis/teams" value="MyBatis implementation"/>-->
+<!--</h:body>-->
+<!--</html>-->
+
