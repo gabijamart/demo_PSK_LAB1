@@ -1,0 +1,32 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lt.vu.mybatis.dao.ContactMapper">
+
+  <resultMap id="contactResultMap" type="lt.vu.mybatis.model.Contact">
+    <id property="id" column="id"/>
+    <result property="contactDescription" column="ContactDescription"/>
+    <result property="contactInfo" column="ContactInfo"/>
+    <result property="authorId" column="AUTHOR_ID"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="contactResultMap">
+    SELECT * FROM CONTACT
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO CONTACT (ContactDescription, ContactInfo, AUTHOR_ID)
+    VALUES (#{contactDescription}, #{contactInfo}, #{authorId})
+  </insert>
+
+  <update id="update">
+    UPDATE CONTACT SET ContactDescription=#{contactDescription}, ContactInfo=#{contactInfo}, AUTHOR_ID=#{authorId}
+    WHERE id = #{id}
+  </update>
+
+  <delete id="deleteById">
+    DELETE FROM CONTACT WHERE id = #{id}
+  </delete>
+
+  <select id="findById" parameterType="int" resultMap="contactResultMap">
+    SELECT * FROM CONTACT WHERE id = #{id}
+  </select>
+</mapper>

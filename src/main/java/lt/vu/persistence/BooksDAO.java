@@ -26,13 +26,13 @@ public class BooksDAO {
     }
 
     public Book findOneByName(String name) {
-        List<Book> foundBooks;
+        List foundBooks;
         foundBooks = em.createQuery("SELECT b FROM Book b WHERE b.name LIKE :findName")
                  .setParameter("findName", name)
                  .setMaxResults(1)
                  .getResultList();
-        if (foundBooks.size() == 0) return null;
-        return foundBooks.get(0);
+        if (foundBooks.isEmpty()) return null;
+        return (Book) foundBooks.get(0);
     }
 
     public Book update(Book book){

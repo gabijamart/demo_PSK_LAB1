@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lt.vu.mybatis.dao.BookMapper">
+  <resultMap id="bookResultMap" type="lt.vu.mybatis.model.Book">
+    <id property="id" column="id" />
+    <result property="name" column="name" />
+  </resultMap>
+
+  <select id="findAll" resultMap="bookResultMap">
+    SELECT id, name FROM BOOK
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO BOOK (name) VALUES (#{name})
+  </insert>
+
+  <update id="update">
+    UPDATE BOOK SET name = #{name} WHERE id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM BOOK WHERE id = #{id}
+  </delete>
+
+  <select id="findById" parameterType="int" resultMap="bookResultMap">
+    SELECT id, name FROM BOOK WHERE id = #{id}
+  </select>
+</mapper>

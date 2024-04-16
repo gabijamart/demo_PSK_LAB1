@@ -1,0 +1,23 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lt.vu.mybatis.dao.AuthorMapper">
+  <resultMap id="authorResultMap" type="lt.vu.mybatis.model.Author">
+    <id property="id" column="id" />
+    <result property="name" column="name" />
+  </resultMap>
+
+  <select id="findAll" resultMap="authorResultMap">
+    SELECT id, name FROM AUTHOR
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO AUTHOR (name) VALUES (#{name})
+  </insert>
+
+  <update id="update">
+    UPDATE AUTHOR SET name = #{name} WHERE id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM AUTHOR WHERE id = #{id}
+  </delete>
+</mapper>
