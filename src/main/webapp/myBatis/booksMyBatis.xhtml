@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Author #{booksMyBatisBean.author.name} wrote:</h2>
+    <ol>
+        <!-- Assuming booksMyBatisBean.author.books is managed by MyBatis -->
+        <ui:repeat value="#{booksMyBatisBean.author.books}" var="book">
+            <div>#{book.name}</div>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText placeholder="name" value="#{booksMyBatis.bookToCreate.name}" required="true" />
+        <h:commandButton value="Add book to author"
+                         action="#{booksMyBatis.addBook}">
+            <!-- Assuming booksMyBatisBean.author.id is the author ID -->
+            <f:param name="authorId" value="#{booksMyBatisBean.author.id}" />
+        </h:commandButton>
+    </h:form>
+    <div>
+        <h:link outcome="index" value="Back to author page"/>
+    </div>
+    <div>
+        <h:link outcome="contacts?authorId=#{booksOfAuthor.author.id}"  value="To author's contacts"/>
+    </div>
+</h:body>
+</html>

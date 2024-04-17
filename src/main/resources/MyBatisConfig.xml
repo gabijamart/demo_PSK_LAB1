@@ -17,7 +17,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis/xml/AuthorMapper.xml"/>
+        <mapper resource="C:\Users\gabij\IdeaProjects\demo_PSK_LAB1\demo_PSK_LAB1\src\main\resources\mybatis.xml\AuthorMapper.xml"/>
         <mapper resource="mybatis/xml/BookMapper.xml"/>
         <mapper resource="mybatis/xml/ContactMapper.xml"/>
     </mappers>

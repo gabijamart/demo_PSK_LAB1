@@ -8,7 +8,6 @@ import org.mybatis.cdi.SessionFactoryProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import java.io.IOException;
-import java.io.InputStream;
 
 @ApplicationScoped
 public class MyBatisResources {
@@ -16,9 +15,14 @@ public class MyBatisResources {
     @Produces
     @ApplicationScoped
     @SessionFactoryProvider
-    public SqlSessionFactory produceSqlSessionFactory() throws IOException {
-        String resource = "mybatis-config.xml"; // Name of your MyBatis configuration XML file
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        return new SqlSessionFactoryBuilder().build(inputStream);
+    private SqlSessionFactory produceSqlSessionFactory() {
+        try {
+            return new SqlSessionFactoryBuilder().build(
+                    Resources.getResourceAsStream("MyBatisConfig.xml")
+            );
+        } catch (IOException e) {
+            throw new RuntimeException("MyBatisResources.produceSqlSessionFactory(): ", e);
+        }
     }
 }
+

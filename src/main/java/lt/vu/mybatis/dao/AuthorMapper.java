@@ -19,4 +19,6 @@ public interface AuthorMapper {
 
     @Delete("DELETE FROM AUTHOR WHERE id = #{id}")
     void delete(Integer id);
+
+    Author findById(Integer authorId);
 }

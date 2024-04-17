@@ -25,4 +25,9 @@
   <select id="findById" parameterType="int" resultMap="bookResultMap">
     SELECT id, name FROM BOOK WHERE id = #{id}
   </select>
+
+  <select id="findByAuthorId" parameterType="int" resultMap="bookResultMap">
+    SELECT id, name FROM BOOK WHERE authorId = #{authorId}
+  </select>
+
 </mapper>

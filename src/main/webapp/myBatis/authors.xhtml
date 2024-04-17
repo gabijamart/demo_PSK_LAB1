@@ -9,13 +9,13 @@
 <h:body>
     <h2>MyBatis Authors:</h2>
     <ol>
-        <ui:repeat value="#{myBatisAuthorsBean.allAuthors}" var="author">
+        <ui:repeat value="#{AuthorsMyBatis.allAuthors}" var="author">
             <li>#{author.name}</li>
         </ui:repeat>
     </ol>
     <h:form>
-        <h:inputText value="#{myBatisAuthorsBean.newAuthor.name}" required="true" />
-        <h:commandButton value="Add new author" action="#{myBatisAuthorsBean.addAuthor}"/>
+        <h:inputText value="#{AuthorsMyBatis.addAuthor.name}" required="true" />
+        <h:commandButton value="Add new author" action="#{AuthorsMyBatis.addAuthor}"/>
     </h:form>
 </h:body>
 </html>

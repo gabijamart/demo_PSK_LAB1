@@ -22,4 +22,9 @@ public interface BookMapper {
 
     @Select("SELECT id, name FROM BOOK WHERE id = #{id}")
     Book findById(Integer id);
+
+    @Select("SELECT id, name FROM BOOK WHERE authorId = #{authorId}")
+    List<Book> findByAuthorId(Integer authorId);
+
 }
+

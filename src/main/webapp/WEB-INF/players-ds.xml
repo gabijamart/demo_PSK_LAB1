@@ -1,5 +1,5 @@
 <datasources>
-    <datasource jndi-name="AuthorDataSource" pool-name="AuthorDataSource">
+    <datasource jndi-name="AuthorsDataSource" pool-name="AuthorsDataSource">
         <driver>h2</driver>
         <connection-url>jdbc:h2:~/h2database/AuthorDB;AUTO_SERVER=TRUE</connection-url>
         <security>

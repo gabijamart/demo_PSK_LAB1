@@ -4,9 +4,9 @@
     <!-- see http://tomee.apache.org/datasource-config.html -->
 
     <!-- H2 Database -->
-    <Resource id="PlayersDataSource" type="DataSource">
+    <Resource id="AuthorsDataSource" type="DataSource">
         JdbcDriver = org.h2.Driver
-        JdbcUrl = jdbc:h2:~/h2database/PlayerDB;AUTO_SERVER=TRUE;
+        JdbcUrl = jdbc:h2:~/h2database/AuthorDB;AUTO_SERVER=TRUE;
         UserName = as
         Password = as
         InitialSize = 1
