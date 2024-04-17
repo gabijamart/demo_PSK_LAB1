@@ -27,7 +27,11 @@
   </select>
 
   <select id="findByAuthorId" parameterType="int" resultMap="bookResultMap">
-    SELECT id, name FROM BOOK WHERE authorId = #{authorId}
+    SELECT b.id, b.name
+    FROM BOOK b
+           INNER JOIN AUTHOR_BOOK ab ON b.id = ab.BOOKS_ID
+    WHERE ab.AUTHORS_ID = #{authorId}
   </select>
+
 
 </mapper>

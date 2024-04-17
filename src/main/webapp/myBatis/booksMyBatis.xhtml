@@ -5,26 +5,14 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head/>
 <h:body>
-    <h2>Author #{booksMyBatisBean.author.name} wrote:</h2>
-    <ol>
-        <!-- Assuming booksMyBatisBean.author.books is managed by MyBatis -->
-        <ui:repeat value="#{booksMyBatisBean.author.books}" var="book">
-            <div>#{book.name}</div>
-        </ui:repeat>
-    </ol>
-    <h:form>
-        <h:inputText placeholder="name" value="#{booksMyBatis.bookToCreate.name}" required="true" />
-        <h:commandButton value="Add book to author"
-                         action="#{booksMyBatis.addBook}">
-            <!-- Assuming booksMyBatisBean.author.id is the author ID -->
-            <f:param name="authorId" value="#{booksMyBatisBean.author.id}" />
-        </h:commandButton>
-    </h:form>
-    <div>
-        <h:link outcome="index" value="Back to author page"/>
-    </div>
-    <div>
-        <h:link outcome="contacts?authorId=#{booksOfAuthor.author.id}"  value="To author's contacts"/>
-    </div>
+    <h2>Authors and their Books:</h2>
+    <ui:repeat value="#{BooksMyBatis.allAuthors}" var="author">
+        <h3>Author: #{author.name}</h3>
+        <ul>
+            <ui:repeat value="#{BooksMyBatis.getBooksByAuthor(author.id)}" var="book">
+                <li>#{book.name}</li>
+            </ui:repeat>
+        </ul>
+    </ui:repeat>
 </h:body>
 </html>
