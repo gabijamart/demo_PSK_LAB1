@@ -10,7 +10,7 @@
     <h2>Author #{contacts.author.name} contacts:</h2>
     <ol>
         <ui:repeat value="#{contacts.author.contacts}" var="contact">
-            <div>#{contact.contactInfo}</div>
+            <li><div>#{contact.contactInfo}</div></li>
         </ui:repeat>
     </ol>
     <h:form>
