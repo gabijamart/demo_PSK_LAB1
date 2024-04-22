@@ -5,28 +5,31 @@
 
 <generatorConfiguration>
     <context id="AuthorDB" targetRuntime="MyBatis3Simple">
+        <property name="overwrite" value="true"/>
         <jdbcConnection driverClass="org.h2.Driver"
                         connectionURL="jdbc:h2:~/h2database/AuthorDB;AUTO_SERVER=TRUE"
                         userId="sa"
                         password="sa">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="lt.vu.mybatis.model" targetProject="MAVEN" />
-        <sqlMapGenerator targetPackage="lt.vu.mybatis.xml" targetProject="MAVEN" />
-        <javaClientGenerator type="XMLMAPPER" targetPackage="lt.vu.mybatis.dao" targetProject="MAVEN" />
+    <javaModelGenerator targetPackage="lt.vu.mybatis.model" targetProject="src/main/java" />
 
-        <table schema="PUBLIC" tableName="AUTHOR">
-            <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
-        </table>
-        <table schema="PUBLIC" tableName="AUTHOR_BOOK">
-            <columnOverride column="AUTHORS_ID" javaType="java.lang.Integer"/>
-            <columnOverride column="BOOKS_ID" javaType="java.lang.Integer"/>
-        </table>
-        <table schema="PUBLIC" tableName="BOOK">
-            <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
-        </table>
-        <table schema="PUBLIC" tableName="CONTACT">
-            <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
-        </table>
-    </context>
+    <sqlMapGenerator targetPackage="lt.vu.mybatis.xml" targetProject="src/main/resources" />
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="lt.vu.mybatis.dao" targetProject="MAVEN" />
+
+    <table schema="PUBLIC" tableName="AUTHOR">
+        <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
+    </table>
+    <table schema="PUBLIC" tableName="AUTHOR_BOOK">
+        <columnOverride column="AUTHORS_ID" javaType="java.lang.Integer"/>
+        <columnOverride column="BOOKS_ID" javaType="java.lang.Integer"/>
+    </table>
+    <table schema="PUBLIC" tableName="BOOK">
+        <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
+    </table>
+    <table schema="PUBLIC" tableName="CONTACT">
+        <generatedKey column="ID" identity="true" sqlStatement="JDBC" />
+    </table>
+</context>
 </generatorConfiguration>

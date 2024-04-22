@@ -9,10 +9,13 @@
     <h2>Author #{booksOfAuthor.author.name} wrote:</h2>
     <ul>
         <ui:repeat value="#{booksOfAuthor.author.books}" var="book">
-            <li><h:link value="#{book.name}" outcome="/bookAuthors?bookId=#{book.id}" /></li>
+            <li><h:link value="#{book.name}" outcome="/bookAuthors">
+                <f:param name="bookId" value="#{book.id}" />
+            </h:link></li>
         </ui:repeat>
     </ul>
     <h:form>
+        <h:messages globalOnly="true" autoUpdate="true" />
         <h:inputText a:placeholder="name" value="#{booksOfAuthor.bookToCreate.name}" required="true" />
         <h:commandButton value="Add book to author"
                          actionListener="#{booksOfAuthor.createBook}"

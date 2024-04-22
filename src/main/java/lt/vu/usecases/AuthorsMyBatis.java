@@ -16,19 +16,16 @@ public class AuthorsMyBatis {
 
     private List<Author> allAuthors;
 
-    // Inject the SqlSessionFactory produced by your MyBatisResources class
     @Inject
     private SqlSessionFactory sqlSessionFactory;
 
-    // Method to load all authors from the database using MyBatis
     public void loadAllAuthors() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             AuthorMapper mapper = session.getMapper(AuthorMapper.class);
             this.allAuthors = mapper.findAll();
-        } // try-with-resources will auto close the session
+        }
     }
 
-    // Getter that JSF will use to get the data for rendering
     public List<Author> getAllAuthors() {
         if (allAuthors == null) {
             loadAllAuthors();
@@ -36,12 +33,11 @@ public class AuthorsMyBatis {
         return allAuthors;
     }
 
-    // If you need to add new authors through your JSF page
     public void addAuthor(Author newAuthor) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             AuthorMapper mapper = session.getMapper(AuthorMapper.class);
             mapper.insert(newAuthor);
-            session.commit(); // Don't forget to commit the transaction
+            session.commit();
         }
     }
 }

@@ -13,6 +13,7 @@
         </ui:repeat>
     </ol>
     <h:form>
+        <h:messages globalOnly="true" autoUpdate="true" />
         <h:inputText value="#{authors.authorToCreate.name}" required="true" />
         <h:commandButton value="Add new author" actionListener="#{authors.createAuthor}" action="index?faces-redirect=true"/>
     </h:form>
