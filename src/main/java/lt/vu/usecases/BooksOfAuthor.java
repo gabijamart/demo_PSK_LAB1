@@ -56,20 +56,16 @@ public class BooksOfAuthor implements Serializable {
     public void createBook() {
         try {
             Book existingBook = booksDAO.findOneByName(bookToCreate.getName());
-            // Check if the book is already associated with the current author
             if (existingBook != null && author.getBooks().contains(existingBook)) {
                 throw new IllegalArgumentException("This author already has a book with the same name.");
             }
 
-            // If the book doesn't exist, create a new one
             if (existingBook == null){
                 booksDAO.persist(bookToCreate);
-                existingBook = bookToCreate; // Update the reference to the newly persisted book
+                existingBook = bookToCreate;
             }
 
-            // Associate the existing or new book with the author
             author.getBooks().add(existingBook);
-            // Update the author to persist the association
             authorDAO.update(author);
         } catch (IllegalArgumentException e) {
             FacesContext.getCurrentInstance().addMessage(null,

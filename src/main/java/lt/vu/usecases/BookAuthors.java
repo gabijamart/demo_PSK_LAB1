@@ -16,7 +16,9 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Model
 @ViewScoped
@@ -34,6 +36,9 @@ public class BookAuthors implements Serializable {
     @Setter
     @Getter
     private Integer selectedAuthorId;
+
+    @Getter
+    private List<Author> availableAuthors;
 
     @PostConstruct
     public void init() {
@@ -56,6 +61,17 @@ public class BookAuthors implements Serializable {
         } catch (NumberFormatException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid book ID format", null));
         }
+        initAvailableAuthors();
+    }
+
+    private void initAvailableAuthors() {
+        if (selectedBook != null) {
+            List<Author> allAuthors = authorDAO.loadAll();
+
+            availableAuthors = allAuthors.stream()
+                    .filter(author -> !selectedBook.getAuthors().contains(author))
+                    .collect(Collectors.toList());
+        }
     }
 
     @Transactional
@@ -71,20 +87,19 @@ public class BookAuthors implements Serializable {
         }
         if (selectedBook == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No book selected", null));
-            return null; // Stay on the same page.
+            return null;
         }
         if (selectedAuthorId == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No author selected", null));
-            return null; // Stay on the same page.
+            return null;
         }
         try {
             Author author = authorDAO.findOne(selectedAuthorId);
             if (author != null && !selectedBook.getAuthors().contains(author)) {
                 selectedBook.getAuthors().add(author);
-                author.getBooks().add(selectedBook); // Assuming you want to update both sides of the relationship
+                author.getBooks().add(selectedBook);
                 booksDAO.update(selectedBook);
-                // Or you could update the author instead, depending on how your persistence context is configured
-                // authorDAO.update(author);
+
                 return null;
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,

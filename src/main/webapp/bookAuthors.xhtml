@@ -15,7 +15,7 @@
     <h:form>
         <h:selectOneMenu value="#{bookAuthors.selectedAuthorId}" label="Select Author" required="true">
             <f:selectItem itemLabel="-- Select Author --" itemValue="" noSelectionOption="true"/>
-            <f:selectItems value="#{authors.allAuthors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}"/>
+            <f:selectItems value="#{bookAuthors.availableAuthors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}"/>
         </h:selectOneMenu>
         <h:commandButton value="Add Author to Book" action="#{bookAuthors.addAuthorToBook}" />
     </h:form>

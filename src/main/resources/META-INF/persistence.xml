@@ -6,7 +6,6 @@
         <class>lt.vu.entities.Book</class>
         <class>lt.vu.entities.Contact</class>
         <properties>
-            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

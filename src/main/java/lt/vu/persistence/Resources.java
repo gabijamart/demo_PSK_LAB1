@@ -26,4 +26,10 @@ public class Resources {
     private void closeDefaultEntityManager(@Disposes @Default EntityManager em) {
         em.close();
     }
+
+    @Produces
+    @ApplicationScoped
+    public EntityManagerFactory produceEntityManagerFactory() {
+        return emf;
+    }
 }
